@@ -1,0 +1,16 @@
+.product {
+    padding: 30px 70px 185px;
+    display: flex;
+    justify-content: space-evenly;
+    &__img {
+        width: 45%;
+    }
+    &__h2 {
+        font-family: cursive;
+        color: $color-primary;
+        text-align: center;
+        font-size: 2.5rem;
+        margin-block-start: 0px;
+        margin-bottom: 70px;
+    }
+}

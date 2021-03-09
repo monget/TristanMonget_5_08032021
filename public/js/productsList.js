@@ -5,7 +5,7 @@ fetch(url)
 })
 .then((data) => {
     let products = data;
-    let productsList = document.getElementById("products__list");
+    let productsList = document.getElementById("products");
     products.forEach(function (product) {
         let productColors = product.colors;
         let productId = product._id;
@@ -15,10 +15,13 @@ fetch(url)
         let productDescription = product.description;
         let a = document.createElement("a");
         a.href = "product.html?id=" + productId;
+        a.classList.add("products__link");
         let title = document.createElement("h2");
         title.textContent = productName;
+        title.classList.add("products__h2");
         let picture = document.createElement("img");
         picture.src = productImage;
+        picture.classList.add("products__img");
         let titleDescription = document.createElement("h3");
         titleDescription.textContent = "Description : ";
         let description = document.createElement("p");
