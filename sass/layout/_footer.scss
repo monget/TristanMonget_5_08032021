@@ -1,0 +1,26 @@
+footer {
+    width: 100%;
+    display: flex;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    color: white;
+    justify-content: space-around;
+    background-color: $color-primary;
+    padding-top: 15px;
+    & h2 {
+        margin-block-start: 0px;
+    }
+    & ul {
+        padding-left: 0px;
+        list-style-type: none;
+        & > li {
+            list-style-type: none;
+            & > a {
+                color: white;
+            }
+        }
+    }
+}
+
+

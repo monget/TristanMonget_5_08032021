@@ -1,0 +1,32 @@
+.products {
+    padding: 30px 0px 170px;
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3, 0fr);
+        justify-content: space-around;
+        margin: auto;
+        & h2 {
+            text-align: center;
+            font-family: cursive;
+            color: $color-primary;
+        }
+        & h3 {
+            font-size: 1em;
+        }
+        & img {
+            width: 100%;
+        }
+        & a {
+            margin: 15px;
+            width: 400px;
+            color: black;
+            transition: transform .2s;
+            border: 2px dashed $color-primary;
+            padding: 40px;
+            background-color: $color-secondary;
+        }
+        & a:hover {
+            transform: scale(1.1);
+        }
+    }
+}

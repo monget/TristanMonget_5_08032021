@@ -5,7 +5,7 @@ fetch(url)
 })
 .then((data) => {
     let products = data;
-    let productsList = document.getElementById("products_list");
+    let productsList = document.getElementById("products__list");
     products.forEach(function (product) {
         let productColors = product.colors;
         let productId = product._id;
