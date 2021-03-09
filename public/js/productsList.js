@@ -14,7 +14,7 @@ fetch(url)
         let productImage = product.imageUrl;
         let productDescription = product.description;
         let a = document.createElement("a");
-        a.href = "product.html";
+        a.href = "product.html?id=" + productId;
         let title = document.createElement("h2");
         title.textContent = productName;
         let picture = document.createElement("img");
