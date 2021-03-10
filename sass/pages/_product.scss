@@ -11,6 +11,18 @@
         text-align: center;
         font-size: 2.5rem;
         margin-block-start: 0px;
-        margin-bottom: 70px;
+        margin-bottom: 50px;
+    }
+}
+
+.form {
+    & div {
+    width: 250px;
+    display: flex;
+    margin: 40px 0px;
+    justify-content: space-between;
+    }
+    &__label h3 {
+        margin-block: 0px;
     }
 }

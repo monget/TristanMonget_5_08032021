@@ -18,7 +18,9 @@ fetch(url)
     let div = document.createElement("div");
     div.classList.add("product__details");
     let form = document.createElement("form");
-    form.classList.add("product__form");
+    form.classList.add("form");
+    form.setAttribute('method',"post");
+    form.setAttribute('action',"submit.php");
 
     let picture = document.createElement("img"); // image
     picture.src = productImage;
@@ -34,8 +36,10 @@ fetch(url)
     let description = document.createElement("p"); // description du produit
     description.textContent = productDescription;
 
+    let colorDiv = document.createElement("div");
     let colorLabel = document.createElement("label"); // menu des couleurs
     colorLabel.setAttribute("for", "color");
+    colorLabel.classList.add("form__label");
     let colorTitle = document.createElement("h3");
     colorTitle.textContent = "Couleur : ";
     let colorSelect = document.createElement("select");
@@ -54,18 +58,18 @@ fetch(url)
     })
 
     let price = document.createElement("p"); // prix
-    price.textContent = "Prix unitaire : " + separateNumber(productPrice) + "€";
-    price.style.marginTop = "30px";
+    price.textContent = "Prix unitaire : " + separateNumber(productPrice) + " €";
 
     product.appendChild(picture);
     div.appendChild(name);
     div.appendChild(descriptionTitle);
     div.appendChild(description);
     div.appendChild(form);
-    form.appendChild(colorLabel);
+    form.appendChild(colorDiv);
+    colorDiv.appendChild(colorLabel);
     colorLabel.appendChild(colorTitle);
-    form.appendChild(colorSelect);
-    div.appendChild(price);
+    colorDiv.appendChild(colorSelect);
+    form.appendChild(price);
     product.appendChild(div);
 });
 
