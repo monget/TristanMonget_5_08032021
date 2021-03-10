@@ -8,41 +8,65 @@ fetch(url)
     return response.json();
 })
 .then((data) => {
-    let product = data;
-    let productsList = document.getElementById("product");
-    let productColors = product.colors;
-    let productId = product._id;
-    let productName = product.name;
-    let productPrice = product.price;
-    let productImage = product.imageUrl;
-    let productDescription = product.description;
+    let productId = data._id;
+    let productName = data.name;
+    let productPrice = data.price;
+    let productColors = data.colors;
+    let productImage = data.imageUrl;
+    let productDescription = data.description;
+    let product = document.getElementById("product"); 
     let div = document.createElement("div");
     div.classList.add("product__details");
-    let title = document.createElement("h2");
-    title.textContent = productName;
-    title.classList.add("product__h2");
-    let picture = document.createElement("img");
+    let form = document.createElement("form");
+    form.classList.add("product__form");
+
+    let picture = document.createElement("img"); // image
     picture.src = productImage;
     picture.classList.add("product__img");
-    let titleDescription = document.createElement("h3");
-    titleDescription.textContent = "Description : ";
-    let description = document.createElement("p");
+
+    let name = document.createElement("h2"); // nom du produit
+    name.textContent = productName;
+    name.classList.add("product__h2");
+
+    let descriptionTitle = document.createElement("h3"); // titre de la description
+    descriptionTitle.textContent = "Description : ";
+
+    let description = document.createElement("p"); // description du produit
     description.textContent = productDescription;
-    let titleColor = document.createElement("h3");
-    titleColor.textContent = "Couleur : ";
-    let color = document.createElement("p");
-    color.textContent = productColors;
-    let price = document.createElement("p");
+
+    let colorLabel = document.createElement("label"); // menu des couleurs
+    colorLabel.setAttribute("for", "color");
+    let colorTitle = document.createElement("h3");
+    colorTitle.textContent = "Couleur : ";
+    let colorSelect = document.createElement("select");
+    colorSelect.setAttribute("name", "color");
+    colorSelect.setAttribute("id", "color");
+    let colorChoise = document.createElement("option");
+    colorChoise.setAttribute("selected", "selected");
+    colorChoise.setAttribute("value", " ");
+    colorChoise.textContent = "Choisissez une couleur";
+    colorSelect.appendChild(colorChoise);
+    productColors.forEach(function (productColor) {
+        let color = document.createElement("option");
+        color.setAttribute("value", productColor);
+        color.textContent = productColor;
+        colorSelect.appendChild(color);
+    })
+
+    let price = document.createElement("p"); // prix
     price.textContent = "Prix unitaire : " + separateNumber(productPrice) + "€";
     price.style.marginTop = "30px";
-    productsList.appendChild(picture);
-    div.appendChild(title);
-    div.appendChild(titleDescription);
+
+    product.appendChild(picture);
+    div.appendChild(name);
+    div.appendChild(descriptionTitle);
     div.appendChild(description);
-    div.appendChild(titleColor);
-    div.appendChild(color);
+    div.appendChild(form);
+    form.appendChild(colorLabel);
+    colorLabel.appendChild(colorTitle);
+    form.appendChild(colorSelect);
     div.appendChild(price);
-    productsList.appendChild(div);
+    product.appendChild(div);
 });
 
 function separateNumber(value) {
