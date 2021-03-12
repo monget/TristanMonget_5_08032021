@@ -25,7 +25,7 @@ fetch(url)
     let picture = document.createElement("img"); // image
     picture.src = productImage;
     picture.classList.add("product__img");
-
+    
     let name = document.createElement("h2"); // nom du produit
     name.textContent = productName;
     name.classList.add("product__h2");
