@@ -1,0 +1,6 @@
+@mixin button($width : 40px) {
+    width: $width;
+    margin: 35px;
+    background-position: center;
+    background-repeat: no-repeat;
+}

@@ -1,9 +1,26 @@
-#h1 {
-    width: 605px;
-    font-size: 5rem;
-    margin: 15px auto;
-    text-align: center;
-    color: navajowhite;
-    font-family: "belligerent", cursive;
-    text-shadow: 0px 0px 5px $color-primary;
+.header {
+    display: flex;
+    flex-direction: row;
+    &__return {
+        cursor: pointer;
+        @include button(25px);
+        background-image: url("../icons/arrow-left-solid.svg");
+    }
+    &__home {
+        @include button();
+        background-image: url("../icons/home-solid.svg");
+    }
+    &__title {
+        width: 605px;
+        font-size: 5rem;
+        margin: 15px auto;
+        text-align: center;
+        color: navajowhite;
+        font-family: "belligerent", cursive;
+        text-shadow: 0px 0px 5px $color-primary;
+    }
+    &__basket {
+        @include button();
+        background-image: url("../icons/shopping-cart-solid.svg");
+    }
 }

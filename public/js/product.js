@@ -19,13 +19,13 @@ fetch(url)
     div.classList.add("product__details");
     let form = document.createElement("form");
     form.classList.add("form");
-    form.setAttribute('method',"post");
-    form.setAttribute('action',"submit.php");
+    form.setAttribute("method","post");
+    form.setAttribute("action","panier.html");
 
     let picture = document.createElement("img"); // image
     picture.src = productImage;
     picture.classList.add("product__img");
-    
+
     let name = document.createElement("h2"); // nom du produit
     name.textContent = productName;
     name.classList.add("product__h2");
@@ -60,6 +60,10 @@ fetch(url)
     let price = document.createElement("p"); // prix
     price.textContent = "Prix unitaire : " + separateNumber(productPrice) + " €";
 
+    let order = document.createElement("input");
+    order.setAttribute("type", "submit"); 
+    order.setAttribute("value", "Ajouter au panier");
+
     product.appendChild(picture);
     div.appendChild(name);
     div.appendChild(descriptionTitle);
@@ -70,6 +74,7 @@ fetch(url)
     colorLabel.appendChild(colorTitle);
     colorDiv.appendChild(colorSelect);
     form.appendChild(price);
+    form.appendChild(order);
     product.appendChild(div);
 });
 
