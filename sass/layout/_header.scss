@@ -3,7 +3,7 @@
     flex-direction: row;
     &__return {
         cursor: pointer;
-        @include button(25px);
+        @include button(20px);
         background-image: url("../icons/arrow-left-solid.svg");
     }
     &__home {

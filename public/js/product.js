@@ -17,10 +17,6 @@ fetch(url)
     let product = document.getElementById("product"); 
     let div = document.createElement("div");
     div.classList.add("product__details");
-    let form = document.createElement("form");
-    form.classList.add("form");
-    form.setAttribute("method","post");
-    form.setAttribute("action","panier.html");
 
     let picture = document.createElement("img"); // image
     picture.src = productImage;
@@ -37,9 +33,10 @@ fetch(url)
     description.textContent = productDescription;
 
     let colorDiv = document.createElement("div");
+    colorDiv.classList.add("product__colors");
     let colorLabel = document.createElement("label"); // menu des couleurs
     colorLabel.setAttribute("for", "color");
-    colorLabel.classList.add("form__label");
+    colorLabel.classList.add("product__label");
     let colorTitle = document.createElement("h3");
     colorTitle.textContent = "Couleur : ";
     let colorSelect = document.createElement("select");
@@ -60,21 +57,20 @@ fetch(url)
     let price = document.createElement("p"); // prix
     price.textContent = "Prix unitaire : " + separateNumber(productPrice) + " €";
 
-    let order = document.createElement("input");
-    order.setAttribute("type", "submit"); 
-    order.setAttribute("value", "Ajouter au panier");
+    let addCart = document.createElement("button");
+    addCart.setAttribute("id", "addCart");
+    addCart.textContent = "Ajouter au panier";
 
     product.appendChild(picture);
     div.appendChild(name);
     div.appendChild(descriptionTitle);
     div.appendChild(description);
-    div.appendChild(form);
-    form.appendChild(colorDiv);
+    div.appendChild(colorDiv);
     colorDiv.appendChild(colorLabel);
     colorLabel.appendChild(colorTitle);
     colorDiv.appendChild(colorSelect);
-    form.appendChild(price);
-    form.appendChild(order);
+    div.appendChild(price);
+    div.appendChild(addCart);
     product.appendChild(div);
 });
 
