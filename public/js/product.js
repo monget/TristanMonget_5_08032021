@@ -18,7 +18,7 @@ fetch(url)
     let div = document.createElement("div");
     div.classList.add("product__details");
 
-    let picture = document.createElement("img"); // image
+    let picture = document.createElement("img");
     picture.src = productImage;
     picture.classList.add("product__img");
 
@@ -32,9 +32,9 @@ fetch(url)
     let description = document.createElement("p"); // description du produit
     description.textContent = productDescription;
 
-    let colorDiv = document.createElement("div");
+    let colorDiv = document.createElement("div"); // menu des couleurs
     colorDiv.classList.add("product__colors");
-    let colorLabel = document.createElement("label"); // menu des couleurs
+    let colorLabel = document.createElement("label");
     colorLabel.setAttribute("for", "color");
     colorLabel.classList.add("product__label");
     let colorTitle = document.createElement("h3");
@@ -47,9 +47,11 @@ fetch(url)
     colorChoise.setAttribute("value", " ");
     colorChoise.textContent = "Choisissez une couleur";
     colorSelect.appendChild(colorChoise);
+    let value = 1;
     productColors.forEach(function (productColor) {
         let color = document.createElement("option");
-        color.setAttribute("value", productColor);
+        color.setAttribute("value", value);
+        value ++;
         color.textContent = productColor;
         colorSelect.appendChild(color);
     })
@@ -57,7 +59,7 @@ fetch(url)
     let price = document.createElement("p"); // prix
     price.textContent = "Prix unitaire : " + separateNumber(productPrice) + " €";
 
-    let addCart = document.createElement("button");
+    let addCart = document.createElement("button"); // bouton ajout produit
     addCart.setAttribute("id", "addCart");
     addCart.textContent = "Ajouter au panier";
 
@@ -72,7 +74,29 @@ fetch(url)
     div.appendChild(price);
     div.appendChild(addCart);
     product.appendChild(div);
+    
+
+    document.getElementById("color").addEventListener("change", function() {
+        selectColor("color");
+    })
+
+    document.getElementById("addCart").addEventListener("click",function() {
+        let addToCart = {
+            'id' : productId,
+            'name' : productName,
+            'color' : color,
+            'price' : productPrice
+        };
+        localStorage.setItem('addToCart', JSON.stringify(addToCart));
+    })
 });
+
+function selectColor(id) {
+    select = document.getElementById(id);
+    choice = select.selectedIndex;
+    color = select.options[choice].text;
+    return color;
+}
 
 function separateNumber(value) {
     while (/(\d+)(\d{2})/.test(value.toString())) {
