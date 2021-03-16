@@ -43,7 +43,7 @@ a {
   font-family: "belligerent", cursive;
   text-shadow: 0px 0px 5px peru;
 }
-.header__basket {
+.header__cart {
   width: 35px;
   margin: 35px;
   background-position: center;
@@ -106,6 +106,35 @@ a {
 }
 .product__label h3 {
   margin-block: 0px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  margin: 50px auto 0px;
+  justify-content: space-around;
+}
+
+.table {
+  border-collapse: collapse;
+}
+.table th {
+  border: 1px solid;
+  padding: 0px 50px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  padding: 25px 25px 200px;
+  border: 1px solid;
+}
+.form input {
+  margin-bottom: 10px;
+}
+.form input[type=submit] {
+  margin: 15px 0px 0px;
 }
 
 footer {

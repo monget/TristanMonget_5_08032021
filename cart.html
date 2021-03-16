@@ -15,11 +15,33 @@
             <a onclick="window.history.back()" class="header__return" title="retour"></a>
             <a href="index.html" class="header__home" title="index"></a>
             <h1 class="header__title">Oriplush</h1>
-            <a href="panier.html" class="header__basket" title="panier"></a>
+            <a href="cart.html" class="header__cart" title="panier"></a>
         </header>
 
-        <main>
-            <div id="product" class="product"></div>
+        <main class="main">
+            <table class="table">
+                <tr>
+                    <th>Article</th>
+                    <th>Couleur</th>
+                    <th>Prix</th>
+                    <th>supprimer</th>
+                </tr>
+                <tr id="addproducts"></tr>
+            </table>
+
+            <form class="form">
+                <label for="lastName">Nom : </label>
+                <input type="text" name="lastName" id="lastName" required>
+                <label for="firstName">Prénom : </label>
+                <input type="text" name="firstName" id="firstName" required>
+                <label for="address">Addresse : </label>
+                <input type="text" name="address" id="address" required>
+                <label for="city">Ville : </label>
+                <input type="text" name="city" id="city" required>
+                <label for="email">Email : </label>
+                <input type="email" name="email" id="email" required>
+                <input type="submit" name="submit" id="submit" value="Commander">
+            </form>
         </main>
 
         <footer>

@@ -19,7 +19,7 @@
         font-family: "belligerent", cursive;
         text-shadow: 0px 0px 5px $color-primary;
     }
-    &__basket {
+    &__cart {
         @include button();
         background-image: url("../icons/shopping-cart-solid.svg");
     }
