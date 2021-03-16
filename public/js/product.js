@@ -42,9 +42,10 @@ fetch(url)
     let colorSelect = document.createElement("select");
     colorSelect.setAttribute("name", "color");
     colorSelect.setAttribute("id", "color");
+    colorSelect.setAttribute("required", "");
     let colorChoise = document.createElement("option");
-    colorChoise.setAttribute("selected", "selected");
-    colorChoise.setAttribute("value", " ");
+    colorChoise.setAttribute("selected", "");
+    colorChoise.setAttribute("value", 0);
     colorChoise.textContent = "Choisissez une couleur";
     colorSelect.appendChild(colorChoise);
     let value = 1;
@@ -80,16 +81,35 @@ fetch(url)
         selectColor("color");
     })
 
+    let addToCart = [];
+    let controlCart = JSON.parse(localStorage.getItem('addToCart'));
+    if (controlCart != null) {
+        addToCart = addToCart.concat(controlCart);
+    }
+
     document.getElementById("addCart").addEventListener("click",function() {
-        let addToCart = {
-            'id' : productId,
-            'name' : productName,
-            'color' : color,
-            'price' : productPrice
-        };
-        localStorage.setItem('addToCart', JSON.stringify(addToCart));
+        if (color.value == 0) {
+            alert("Merci de sélectionner une couleur !");
+        }
+        else if (color != "Choisissez une couleur") {
+            let productDetails = {
+                'id' : productId,
+                'name' : productName,
+                'color' : color,
+                'price' : productPrice
+            };
+            addToCart.push(productDetails);
+            localStorage.setItem('addToCart', JSON.stringify(addToCart));
+        }
+        else {
+            alert("Merci de sélectionner une couleur !");
+        }
+        let test = localStorage.getItem('addToCart');
+        console.log(JSON.parse(test));
     })
 });
+
+
 
 function selectColor(id) {
     select = document.getElementById(id);
