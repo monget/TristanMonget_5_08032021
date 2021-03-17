@@ -7,9 +7,13 @@
 
 .table {
     border-collapse: collapse;
-    & th {
+    & th, td {
         border: 1px solid;
         padding: 0px 50px;
+    }
+    &__delete {
+        @include button();
+        background-image: url("../icons/trash-alt-solid.svg");
     }
 }
 

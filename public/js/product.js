@@ -104,8 +104,6 @@ fetch(url)
         else {
             alert("Merci de sélectionner une couleur !");
         }
-        let test = localStorage.getItem('addToCart');
-        console.log(JSON.parse(test));
     })
 });
 

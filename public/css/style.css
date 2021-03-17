@@ -118,9 +118,16 @@ a {
 .table {
   border-collapse: collapse;
 }
-.table th {
+.table th, .table td {
   border: 1px solid;
   padding: 0px 50px;
+}
+.table__delete {
+  width: 35px;
+  margin: 35px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../icons/trash-alt-solid.svg");
 }
 
 .form {
