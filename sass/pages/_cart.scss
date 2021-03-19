@@ -1,39 +1,50 @@
 .main {
     display: flex;
     flex-direction: row;
-    margin: 35px auto;
+    margin: 50px auto;
     justify-content: space-around;
 }
 
 .table {
     border-collapse: collapse;
+    background-color: $color-secondary;
+    &__head {
+        font-size: 1.1em;
+    }
     & th, td {
         width: 200px;
-        border: 1px solid;
+        border: 2px solid $color-primary;
         text-align: center;
-        border-color :peru;
+
     }
     &__delete {
-        @include button();
+        cursor: pointer;
+        background-size: 15px;
+        background-position: center;
+        background-repeat: no-repeat;
         background-image: url("../icons/trash-alt-solid.svg");
     }
     &__order {
         width: 100%;
+        cursor: pointer;
     }
 }
 
 .form {
-    visibility: hidden;
-    display: flex;
-    flex-direction: column;
     width: 30%;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
     padding: 25px 25px 25px;
-    border: 1px solid;
-    border-color :peru;
+    border: 2px solid $color-primary;
+    background-color: $color-secondary;
     & input {
         margin-bottom: 10px;
+        border: 1px solid $color-primary;
+        outline-color: $color-primary;
     }
     & input[type=submit] {
+        cursor: pointer;
         margin: 15px 0px 0px;
     }
 }

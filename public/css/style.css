@@ -115,43 +115,50 @@ a {
 .main {
   display: flex;
   flex-direction: row;
-  margin: 35px auto;
+  margin: 50px auto;
   justify-content: space-around;
 }
 
 .table {
   border-collapse: collapse;
+  background-color: navajowhite;
+}
+.table__head {
+  font-size: 1.1em;
 }
 .table th, .table td {
   width: 200px;
-  border: 1px solid;
+  border: 2px solid peru;
   text-align: center;
-  border-color: peru;
 }
 .table__delete {
-  width: 35px;
-  margin: 35px;
+  cursor: pointer;
+  background-size: 15px;
   background-position: center;
   background-repeat: no-repeat;
   background-image: url("../icons/trash-alt-solid.svg");
 }
 .table__order {
   width: 100%;
+  cursor: pointer;
 }
 
 .form {
-  visibility: hidden;
-  display: flex;
-  flex-direction: column;
   width: 30%;
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
   padding: 25px 25px 25px;
-  border: 1px solid;
-  border-color: peru;
+  border: 2px solid peru;
+  background-color: navajowhite;
 }
 .form input {
   margin-bottom: 10px;
+  border: 1px solid peru;
+  outline-color: peru;
 }
 .form input[type=submit] {
+  cursor: pointer;
   margin: 15px 0px 0px;
 }
 

@@ -118,7 +118,7 @@ function selectColor(id) {
 }
 
 function separateNumber(value) {
-    while (/(\d+)(\d{2})/.test(value.toString())) {
+    if (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     } return value;
 }
