@@ -1,28 +1,35 @@
 .main {
     display: flex;
     flex-direction: row;
-    margin: 50px auto 0px;
+    margin: 35px auto;
     justify-content: space-around;
 }
 
 .table {
     border-collapse: collapse;
     & th, td {
+        width: 200px;
         border: 1px solid;
-        padding: 0px 50px;
+        text-align: center;
+        border-color :peru;
     }
     &__delete {
         @include button();
         background-image: url("../icons/trash-alt-solid.svg");
     }
+    &__order {
+        width: 100%;
+    }
 }
 
 .form {
+    visibility: hidden;
     display: flex;
     flex-direction: column;
     width: 30%;
-    padding: 25px 25px 200px;
+    padding: 25px 25px 25px;
     border: 1px solid;
+    border-color :peru;
     & input {
         margin-bottom: 10px;
     }

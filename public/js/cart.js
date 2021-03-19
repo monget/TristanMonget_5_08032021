@@ -3,7 +3,37 @@ let storageProducts = JSON.parse(storage);
 
 let addProducts = document.getElementById("addproducts");
 
+console.log(storageProducts);
+
+if (storageProducts != null) {
+    additionPrice(storageProducts.length);
+}
+else {
+    let tr = document.createElement("tr");
+    let emptycart = document.createElement("td");
+    emptycart.setAttribute("colspan", "4");
+    emptycart.textContent = "Votre panier est vide";
+    tr.appendChild(emptycart);
+    addProducts.appendChild(tr);
+}
+
+function additionPrice(value) {
+    let total = 0;
+    if (value != 0) {
+        for (i=0; i<value; i++) {
+            total += storageProducts[i].price;
+        }
+        let totalPrice = document.createElement("span");
+        totalPrice.textContent = separateNumber(total  + " €");
+        document.getElementById("total-price").appendChild(totalPrice);
+    }
+}
+
+
+
 let number = 0;
+
+
 storageProducts.forEach(function (storageProduct) {
     let tr = document.createElement("tr");
     let id = storageProduct.id;
@@ -18,7 +48,7 @@ storageProducts.forEach(function (storageProduct) {
     tdColor.textContent = color;
 
     let tdPrice = document.createElement("td");
-    tdPrice.textContent = separateNumber(price);
+    tdPrice.textContent = separateNumber(price + " €");
 
     let tdDelete = document.createElement("td");
     number ++;
@@ -32,15 +62,22 @@ storageProducts.forEach(function (storageProduct) {
     addProducts.appendChild(tr);
 })
 
-document.getElementById("test0").addEventListener("click",function() {
+document.getElementById("button-order").addEventListener("click",function() {
+    document.getElementById("form").style.visibility = "visible";
+})
+
+document.getElementById("delete-all").addEventListener("click",function() {
     window.localStorage.clear();
 })
 
-let testId = document.getElementById("test"+number);
-testId.addEventListener("click",function() {
-    console.log("test");
-    console.log(testId);
-})
+//localStorage.removeItem(storageProducts);
+
+/*
+function separateNumber(value) {
+    while (/(\d{2})/.test(value.toString())) {
+        value = value.toString().replace(/(\d{2})/, '$'+','+'$2');
+    } return value;
+}*/
 
 
 function separateNumber(value) {

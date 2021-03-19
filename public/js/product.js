@@ -100,6 +100,7 @@ fetch(url)
             };
             addToCart.push(productDetails);
             localStorage.setItem('addToCart', JSON.stringify(addToCart));
+            alert("Votre produit à bien été ajouté au panier");
         }
         else {
             alert("Merci de sélectionner une couleur !");

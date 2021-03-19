@@ -19,16 +19,26 @@
         </header>
 
         <main class="main">
-            <table id="addproducts" class="table">
-                <tr>
-                    <th>Article</th>
-                    <th>Couleur</th>
-                    <th>Prix</th>
-                    <th id="test0" class="table__delete"></th>
-                </tr>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Article</th>
+                        <th>Couleur</th>
+                        <th>Prix</th>
+                        <th id="delete-all" class="table__delete"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th colspan="2">Total :</th>
+                        <th id="total-price"></th>
+                        <th><input id="button-order" class="table__order" type=button value="Commander"></th>
+                    </tr>
+                </tfoot>
+                <tbody id="addproducts"></tbody>
             </table>
 
-            <form class="form">
+            <form id="form" class="form">
                 <label for="lastName">Nom : </label>
                 <input type="text" name="lastName" id="lastName" required>
                 <label for="firstName">Prénom : </label>
