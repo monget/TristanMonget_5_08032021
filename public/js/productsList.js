@@ -13,33 +13,39 @@ fetch(url)
         let productPrice = product.price;
         let productImage = product.imageUrl;
         let productDescription = product.description;
+
         let a = document.createElement("a");
         a.href = "product.html?id=" + productId;
         a.classList.add("products__link");
-        let title = document.createElement("h2");
-        title.textContent = productName;
-        title.classList.add("products__h2");
-        let picture = document.createElement("img");
-        picture.src = productImage;
-        picture.classList.add("products__img");
-        let titleDescription = document.createElement("h3");
-        titleDescription.textContent = "Description : ";
-        let description = document.createElement("p");
-        description.textContent = productDescription;
-        let titleColor = document.createElement("h3");
-        titleColor.textContent = "Couleurs disponibles : ";
-        let color = document.createElement("p");
-        color.textContent = productColors;
-        let price = document.createElement("p");
-        price.textContent = "Prix unitaire : " + separateNumber(productPrice) + "€";
-        price.style.marginTop = "30px";
-        a.appendChild(picture);
-        a.appendChild(title);
-        a.appendChild(titleDescription);
-        a.appendChild(description);
-        a.appendChild(titleColor);
-        a.appendChild(color);
-        a.appendChild(price);
+
+        function creationProducts(product, elementName, elementValue) {
+            if (elementName === "picture") {
+                elementName = document.createElement(elementValue);
+                elementName.src = product;
+            }
+            else if (elementName === "price") {
+                elementName = document.createElement(elementValue);
+                elementName.textContent = product;
+                elementName.classList.add("products__price");
+            }
+            else {
+                elementName = document.createElement(elementValue);
+                elementName.textContent = product;
+            }
+            if (elementValue === "img" || elementValue === "h2" || elementValue === "span") {
+                elementName.classList.add("products__" + elementValue);
+            }
+            a.appendChild(elementName);
+        }
+
+        creationProducts(productName, "title", "h2");
+        creationProducts(productImage, "picture", "img");
+        creationProducts("Description : ", "titleDescription", "h3");
+        creationProducts(productDescription, "description", "p");
+        creationProducts("Couleurs disponibles : ", "titleColor", "h3");
+        creationProducts(productColors, "color", "p");
+        creationProducts("Prix unitaire : " + separateNumber(productPrice) + "€", "price", "p");
+
         productsList.appendChild(a);
     })
 });
@@ -48,4 +54,10 @@ function separateNumber(value) {
     while (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     } return value;
+}
+
+function test(product, elementName, elementValue) {
+    elementName = document.createElement(elementValue);
+    elementName.textContent = product;
+    return elementName;
 }
