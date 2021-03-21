@@ -62,7 +62,7 @@ a {
   justify-content: space-around;
   margin: auto;
 }
-.products__h2 {
+.products__title {
   text-align: center;
   font-family: cursive;
   color: peru;
@@ -70,7 +70,7 @@ a {
 .products h3 {
   font-size: 1em;
 }
-.products__img {
+.products__picture {
   width: 100%;
 }
 .products__link {
@@ -94,10 +94,10 @@ a {
   display: flex;
   justify-content: space-evenly;
 }
-.product__img {
+.product__picture {
   width: 45%;
 }
-.product__h2 {
+.product__name {
   font-family: cursive;
   color: peru;
   text-align: center;
@@ -111,7 +111,7 @@ a {
   margin: 40px 0px;
   justify-content: space-between;
 }
-.product__label h3 {
+.product__colorLabel h3 {
   margin-block: 0px;
 }
 

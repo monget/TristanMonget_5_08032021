@@ -4,7 +4,7 @@
     grid-template-columns: repeat(3, 0fr);
     justify-content: space-around;
     margin: auto;
-    &__h2 {
+    &__title {
         text-align: center;
         font-family: cursive;
         color: $color-primary;
@@ -12,7 +12,7 @@
     & h3 {
         font-size: 1em;
     }
-    &__img {
+    &__picture {
         width: 100%;
     }
     &__link {

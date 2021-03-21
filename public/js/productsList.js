@@ -1,9 +1,7 @@
-let url="http://localhost:3000/api/teddies";
-fetch(url)
-.then((response) => {
-    return response.json();
-})
-.then((data) => {
+async function getData(url) {
+    let response = await fetch(url);
+    let data = await response.json();
+
     let products = data;
     let productsList = document.getElementById("products");
     products.forEach(function (product) {
@@ -18,26 +16,20 @@ fetch(url)
         a.href = "product.html?id=" + productId;
         a.classList.add("products__link");
 
-        function creationProducts(product, elementName, elementValue) {
-            if (elementName === "picture") {
-                elementName = document.createElement(elementValue);
-                elementName.src = product;
-            }
-            else if (elementName === "price") {
-                elementName = document.createElement(elementValue);
-                elementName.textContent = product;
-                elementName.classList.add("products__price");
+        function creationProducts(productName, elementName, elementValue) {
+            let classList = elementName;
+            elementName = document.createElement(elementValue);
+            if (classList === "picture") {
+                elementName.src = productName;
             }
             else {
-                elementName = document.createElement(elementValue);
-                elementName.textContent = product;
+                elementName.textContent = productName;
             }
-            if (elementValue === "img" || elementValue === "h2" || elementValue === "span") {
-                elementName.classList.add("products__" + elementValue);
+            if (classList === "picture" || classList === "title" || classList === "price") {
+                elementName.classList.add("products__" + classList);
             }
             a.appendChild(elementName);
         }
-
         creationProducts(productName, "title", "h2");
         creationProducts(productImage, "picture", "img");
         creationProducts("Description : ", "titleDescription", "h3");
@@ -48,16 +40,13 @@ fetch(url)
 
         productsList.appendChild(a);
     })
-});
+}
+
+getData("http://localhost:3000/api/teddies");
+
 
 function separateNumber(value) {
     while (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     } return value;
-}
-
-function test(product, elementName, elementValue) {
-    elementName = document.createElement(elementValue);
-    elementName.textContent = product;
-    return elementName;
 }

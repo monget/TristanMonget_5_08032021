@@ -2,10 +2,10 @@
     padding: 30px 70px 40px;
     display: flex;
     justify-content: space-evenly;
-    &__img {
+    &__picture {
         width: 45%;
     }
-    &__h2 {
+    &__name {
         font-family: cursive;
         color: $color-primary;
         text-align: center;
@@ -19,7 +19,7 @@
     margin: 40px 0px;
     justify-content: space-between;
     }
-    &__label h3 {
+    &__colorLabel h3 {
         margin-block: 0px;
     }
 }

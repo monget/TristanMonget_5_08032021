@@ -9,8 +9,6 @@ else {
     emptyCart();
 }
 
-//localStorage.removeItem(storageProducts);
-
 function productAddition() {
     let number = 0;
     storageProducts.forEach(function (storageProduct) {
@@ -23,11 +21,6 @@ function productAddition() {
         let color = storageProduct.color;
         let price = storageProduct.price;
 
-        creationProducts(name, "tdName");
-        creationProducts(color, "tdcolor");
-        creationProducts(separateNumber(price + " €"), "tdPrice");
-        creationProducts("", "tdDelete");
-
         function creationProducts(storageName, tdName) {
             tdName = document.createElement("td");
             if (storageName === "") {
@@ -37,6 +30,12 @@ function productAddition() {
             tdName.textContent = storageName;
             tr.appendChild(tdName);
         }
+
+        creationProducts(name, "tdName");
+        creationProducts(color, "tdcolor");
+        creationProducts(separateNumber(price + " €"), "tdPrice");
+        creationProducts("", "tdDelete");
+
         addProducts.appendChild(tr);
     })
 }
@@ -76,3 +75,5 @@ document.getElementById("delete-all").addEventListener("click",function() {
     window.localStorage.clear();
     emptyCart();
 })
+
+//localStorage.removeItem(storageProducts);
