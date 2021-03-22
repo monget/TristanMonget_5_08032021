@@ -2,14 +2,14 @@ let storageProducts = JSON.parse(localStorage.getItem('addToCart'));
 let addProducts = document.getElementById("addproducts");
 
 if (storageProducts != null) {
-    productAddition();
+    productAdditionInCart();
     totalPrice(storageProducts.length);
 }
 else {
     emptyCart();
 }
 
-function productAddition() {
+function productAdditionInCart() {
     let number = 0;
     storageProducts.forEach(function (storageProduct) {
         number ++;
@@ -21,23 +21,29 @@ function productAddition() {
         let color = storageProduct.color;
         let price = storageProduct.price;
 
-        function creationProducts(storageName, tdName) {
-            tdName = document.createElement("td");
-            if (storageName === "") {
-                tdName.setAttribute("title", "supprimer le produit");
-                tdName.classList.add("table__delete");
-            }
-            tdName.textContent = storageName;
-            tr.appendChild(tdName);
-        }
-
-        creationProducts(name, "tdName");
-        creationProducts(color, "tdcolor");
-        creationProducts(separateNumber(price + " €"), "tdPrice");
-        creationProducts("", "tdDelete");
+        creationProducts(name, "tdName", tr);
+        creationProducts(color, "tdcolor", tr);
+        creationProducts(separateNumber(price + " €"), "tdPrice", tr);
+        creationProducts("", "tdDelete", tr);
 
         addProducts.appendChild(tr);
     })
+}
+
+function creationProducts(storageName, tdName, tr) {
+    tdName = document.createElement("td");
+    if (storageName === "") {
+        tdName.setAttribute("title", "supprimer le produit");
+        tdName.classList.add("table__delete");
+    }
+    tdName.textContent = storageName;
+    tr.appendChild(tdName);
+}
+
+function separateNumber(value) {
+    if (/(\d+)(\d{2})/.test(value.toString())) {
+        value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
+    } return value;
 }
 
 function totalPrice(value) {
@@ -59,12 +65,6 @@ function emptyCart() {
     tdCart.textContent = "Votre panier est vide";
     tr.appendChild(tdCart);
     addProducts.appendChild(tr);
-}
-
-function separateNumber(value) {
-    if (/(\d+)(\d{2})/.test(value.toString())) {
-        value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
-    } return value;
 }
 
 document.getElementById("button-order").addEventListener("click",function() {
