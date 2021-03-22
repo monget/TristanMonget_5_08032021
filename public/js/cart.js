@@ -77,3 +77,4 @@ document.getElementById("delete-all").addEventListener("click",function() {
 })
 
 //localStorage.removeItem(storageProducts);
+//console.log(storageProducts[1]);

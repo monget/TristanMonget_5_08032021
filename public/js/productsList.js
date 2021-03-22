@@ -1,7 +1,4 @@
-async function getData(url) {
-    let response = await fetch(url);
-    let data = await response.json();
-
+function bindProductsToView(data) {
     let products = data;
     let productsList = document.getElementById("products");
     products.forEach(function (product) {
@@ -16,37 +13,44 @@ async function getData(url) {
         a.href = "product.html?id=" + productId;
         a.classList.add("products__link");
 
-        function creationProducts(productName, elementName, elementValue) {
-            let classList = elementName;
-            elementName = document.createElement(elementValue);
-            if (classList === "picture") {
-                elementName.src = productName;
-            }
-            else {
-                elementName.textContent = productName;
-            }
-            if (classList === "picture" || classList === "title" || classList === "price") {
-                elementName.classList.add("products__" + classList);
-            }
-            a.appendChild(elementName);
-        }
-        creationProducts(productName, "title", "h2");
-        creationProducts(productImage, "picture", "img");
-        creationProducts("Description : ", "titleDescription", "h3");
-        creationProducts(productDescription, "description", "p");
-        creationProducts("Couleurs disponibles : ", "titleColor", "h3");
-        creationProducts(productColors, "color", "p");
-        creationProducts("Prix unitaire : " + separateNumber(productPrice) + "€", "price", "p");
+        creationProducts(productName, "title", "h2", a);
+        creationProducts(productImage, "picture", "img", a);
+        creationProducts("Description : ", "titleDescription", "h3", a);
+        creationProducts(productDescription, "description", "p", a);
+        creationProducts("Couleurs disponibles : ", "titleColor", "h3", a);
+        creationProducts(productColors, "color", "p", a);
+        creationProducts("Prix unitaire : " + separateNumber(productPrice) + "€", "price", "p", a);
 
         productsList.appendChild(a);
     })
 }
 
-getData("http://localhost:3000/api/teddies");
-
+function creationProducts(productName, elementName, elementValue, a) {
+    let classList = elementName; 
+    elementName = document.createElement(elementValue);
+    if (classList === "picture") {
+        elementName.src = productName;
+    }
+    else {
+        elementName.textContent = productName;
+    }
+    if (classList === "picture" || classList === "title" || classList === "price") {
+        elementName.classList.add("products__" + classList);
+    }
+    a.appendChild(elementName);
+}
 
 function separateNumber(value) {
     while (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     } return value;
 }
+
+getData("http://localhost:3000/api/teddies")
+    .then(data => {
+        bindProductsToView(data);
+    })
+    .catch(error => {
+        console.error(error);
+        alert(error);
+    })
