@@ -14,9 +14,10 @@ function productAdditionInCart() {
     storageProducts.forEach(function (storageProduct) {
         number ++;
         let tr = document.createElement("tr");
-        tr.setAttribute("id", "tr-lign"+number);
+        tr.setAttribute("id", "tr-lign" + number);
+        tr.setAttribute("onClick", "removeItem(" + number + ")");
     
-        let id = storageProduct.id;
+        //let id = storageProduct.id;
         let name = storageProduct.name;
         let color = storageProduct.color;
         let price = storageProduct.price;
@@ -67,14 +68,65 @@ function emptyCart() {
     addProducts.appendChild(tr);
 }
 
+document.getElementById("delete-all").addEventListener("click",function() {
+    window.localStorage.clear();
+    while (addProducts.firstChild) {
+        addProducts.removeChild(addProducts.firstChild);
+    }
+    document.getElementById("total-price").textContent = "";
+    emptyCart();
+})
+
+function removeItem(value) {
+    let lignNumber = document.getElementById("tr-lign" + value);
+    addProducts.removeChild(lignNumber);
+}
+
 document.getElementById("button-order").addEventListener("click",function() {
     document.getElementById("form").style.visibility = "visible";
 })
 
-document.getElementById("delete-all").addEventListener("click",function() {
-    window.localStorage.clear();
-    emptyCart();
-})
+function control() {
+    const lastName = form.elements.lastName.value;
+    const firstName = form.elements.firstName.value;
+    const address = form.elements.address.value;
+    const city = form.elements.city.value;
+    const email = form.elements.email.value;
+    const regexWord = /^[A-Za-zÀ-ÖØ-öø-ÿ-]+$/;
+    const regexAddress = /[A-Za-zÀ-ÖØ-öø-ÿ0-9_-]+/;
+    const regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
 
-//localStorage.removeItem(storageProducts);
-//console.log(storageProducts[1]);
+    if (!regexWord.test(lastName)) {
+        alert("Merci de mettre un nom valide");
+        return false;
+    }
+    else if (!regexWord.test(firstName)) {
+        alert("Merci de mettre un prénom valide");
+        return false;
+    }
+    else if (!regexAddress.test(address)) {
+        alert("Merci de renseigner une adresse compléte")
+        return false;
+    }
+    else if (!regexWord.test(city)) {
+        alert("Merci de renseigner un nom de ville")
+        return false;
+    }
+    else if (!regexEmail.test(email)) {
+        alert("Merci de mettre un adresse email valide");
+        return false;
+    }
+    else {
+        return true;
+    } 
+}
+
+
+
+//localStorage.setItem('addToCart', JSON.stringify(storageProducts));
+/*
+console.log(storageProducts);
+//localStorage.removeItem('addToCart');
+console.log(localStorage);
+console.log(localStorage.length);
+console.log(storageProducts);*/

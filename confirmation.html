@@ -12,45 +12,29 @@
         
     <body>
         <header class="header">
-            <a onclick="window.history.back()" class="header__return" title="retour"></a>
             <a href="index.html" class="header__home" title="index"></a>
             <h1 class="header__title">Oriplush</h1>
             <a href="cart.html" class="header__cart" title="panier"></a>
         </header>
 
-        <main class="main">
+        <main>
+            <h2>Oriplush vous remerci pour votre commande</h2>
             <table class="table">
                 <thead class="table__head">
                     <tr>
                         <th>Article</th>
                         <th>Couleur</th>
                         <th>Prix</th>
-                        <th id="delete-all" class="table__delete" title="Vider le panier"></th>
                     </tr>
                 </thead>
                 <tfoot class="table__foot">
                     <tr>
                         <th colspan="2">Total :</th>
                         <th id="total-price"></th>
-                        <th><input id="button-order" class="table__order" type=button value="Valider le panier"></th>
                     </tr>
                 </tfoot>
                 <tbody id="addproducts"></tbody>
             </table>
-
-            <form id="form" class="form" onsubmit="return control(this)" action="confirmation.html" method="post">
-                <label for="lastName">Nom : </label>
-                <input type="text" name="lastName" id="lastName" required>
-                <label for="firstName">Prénom : </label>
-                <input type="text" name="firstName" id="firstName" required>
-                <label for="address">Addresse : </label>
-                <input type="text" name="address" id="address" required>
-                <label for="city">Ville : </label>
-                <input type="text" name="city" id="city" required>
-                <label for="email">Email : </label>
-                <input type="email" name="email" id="email" required>
-                <input type="submit" name="submit" id="submit" value="Commander">
-            </form>
         </main>
 
         <footer>
@@ -72,6 +56,5 @@
             </nav>
             <nav id="copyright">©Copyright 2021 par Tristan Monget. Tous droits réservés.</nav>
         </footer>
-        <script src="public/js/cart.js"></script>
     </body>
 </html>
