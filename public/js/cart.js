@@ -128,6 +128,25 @@ function control() {
         return false;
     }
     else {
+        let contact = {
+            firstName,
+            lastName,
+            address,
+            city,
+            email 
+        }
+        //postData(contact);
         return true;
     } 
+}
+
+async function postData(contact) {
+    let response = await fetch("http://localhost:3000/api/teddies/order", {
+        method: "POST",
+        headers: {"Content-Type": "application/json;charset=UTF-8"},
+        body:  JSON.stringify(contact)
+    })
+    .then(function(response) {
+        return response.json();
+    })
 }
