@@ -5,9 +5,7 @@ function date() {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
-        day: 'numeric'/*,
-        hour: 'numeric',
-        minute: 'numeric'*/
+        day: 'numeric'
     });
     let localhour = dateOrder.toLocaleString('fr-FR', {
         hour: 'numeric',
