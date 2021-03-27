@@ -65,6 +65,7 @@ function emptyCart() {
     tr.appendChild(tdCart);
     addProducts.appendChild(tr);
     document.getElementById("total-price").textContent = "";
+    document.getElementById("form").style.visibility = "hidden";
 }
 
 document.getElementById("delete-all").addEventListener("click",function() {
@@ -94,7 +95,9 @@ function removeItem(value) {
 }
 
 document.getElementById("button-order").addEventListener("click",function() {
-    document.getElementById("form").style.visibility = "visible";
+    if (storageProducts != null){
+        document.getElementById("form").style.visibility = "visible";
+    }
 })
 
 function control() {
@@ -128,25 +131,45 @@ function control() {
         return false;
     }
     else {
-        let contact = {
-            firstName,
-            lastName,
-            address,
-            city,
-            email 
+        if (storageProducts != null) {
+            let products = [];
+            storageProducts.forEach(function (storageProduct) {
+                return products.push(storageProduct.id);
+            })
+            order = {
+                contact: {
+                    firstName,
+                    lastName,
+                    address,
+                    city,
+                    email,
+                },
+                products
+            }
+            postData();
+            window.localStorage.clear();
         }
-        //postData(contact);
-        return true;
-    } 
+        else {
+            alert("Votre panier est vide");
+        }
+        return false;
+    }
 }
 
-async function postData(contact) {
-    let response = await fetch("http://localhost:3000/api/teddies/order", {
+async function postData() {
+    response = await fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
         headers: {"Content-Type": "application/json;charset=UTF-8"},
-        body:  JSON.stringify(contact)
+        body:  JSON.stringify(order)
     })
-    .then(function(response) {
+    .then(response => {
         return response.json();
+    })
+    .then(data => {
+        window.location = "confirmation.html?order=" + data.orderId;
+    })
+    .catch(error => {
+        console.error(error);
+        alert(error);
     })
 }
