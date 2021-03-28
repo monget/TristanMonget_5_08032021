@@ -132,9 +132,25 @@ function control() {
     }
     else {
         if (storageProducts != null) {
+            let dateOrder = new Date();
+            let localDate = dateOrder.toLocaleString('fr-FR', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })
+            date = {localDate};
+            localStorage.setItem('dateOrder', JSON.stringify(date));
             let products = [];
             storageProducts.forEach(function (storageProduct) {
-                return products.push(storageProduct.id);
+                let product = {
+                    '_id' : storageProduct.id,
+                    'name' : storageProduct.name,
+                    'color' : storageProduct.color,
+                    'price' : storageProduct.price
+                }
+                products.push(product);
+                localStorage.setItem('order', JSON.stringify(products));
             })
             order = {
                 contact: {
@@ -147,7 +163,7 @@ function control() {
                 products
             }
             postData();
-            window.localStorage.clear();
+            localStorage.removeItem("addToCart");
         }
         else {
             alert("Votre panier est vide");
