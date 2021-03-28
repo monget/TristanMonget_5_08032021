@@ -1,21 +1,33 @@
 .main {
     display: flex;
-    flex-direction: row;
     margin: 50px auto;
+    flex-direction: row;
+    padding-bottom: 170px;
     justify-content: space-around;
+    font-family: "belligerent", cursive;
 }
 
 .table {
     border-collapse: collapse;
     background-color: $color-secondary;
     &__head {
-        font-size: 1.1em;
+        font-size: 1.7em;
+    }
+    &__foot {
+        font-size: 1.5em;
+    }
+    &__body {
+        font-size: 1.3em;
     }
     & th, td {
         width: 200px;
         border: 2px solid $color-primary;
         text-align: center;
-
+    }
+    &__image {
+        width: 100px;
+        margin: 5px;
+        border: 5px solid $color-primary;
     }
     &__delete {
         cursor: pointer;
@@ -26,6 +38,7 @@
     }
     &__order {
         width: 100%;
+        height: 30px;
         cursor: pointer;
     }
 }
@@ -34,17 +47,21 @@
     width: 30%;
     display: flex;
     visibility: hidden;
+    font-size: x-large;
     flex-direction: column;
     padding: 25px 25px 25px;
     border: 2px solid $color-primary;
     background-color: $color-secondary;
     & input {
+        font-size: x-large;
         margin-bottom: 10px;
+        height: -webkit-fill-available;
         border: 1px solid $color-primary;
         outline-color: $color-primary;
     }
     & input[type=submit] {
         cursor: pointer;
+        font-size: x-large;
         margin: 15px 0px 0px;
     }
 }

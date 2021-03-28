@@ -117,9 +117,11 @@ a {
 
 .main {
   display: flex;
-  flex-direction: row;
   margin: 50px auto;
+  flex-direction: row;
+  padding-bottom: 170px;
   justify-content: space-around;
+  font-family: "belligerent", cursive;
 }
 
 .table {
@@ -127,12 +129,23 @@ a {
   background-color: navajowhite;
 }
 .table__head {
-  font-size: 1.1em;
+  font-size: 1.7em;
+}
+.table__foot {
+  font-size: 1.5em;
+}
+.table__body {
+  font-size: 1.3em;
 }
 .table th, .table td {
   width: 200px;
   border: 2px solid peru;
   text-align: center;
+}
+.table__image {
+  width: 100px;
+  margin: 5px;
+  border: 5px solid peru;
 }
 .table__delete {
   cursor: pointer;
@@ -143,6 +156,7 @@ a {
 }
 .table__order {
   width: 100%;
+  height: 30px;
   cursor: pointer;
 }
 
@@ -150,18 +164,22 @@ a {
   width: 30%;
   display: flex;
   visibility: hidden;
+  font-size: x-large;
   flex-direction: column;
   padding: 25px 25px 25px;
   border: 2px solid peru;
   background-color: navajowhite;
 }
 .form input {
+  font-size: x-large;
   margin-bottom: 10px;
+  height: -webkit-fill-available;
   border: 1px solid peru;
   outline-color: peru;
 }
 .form input[type=submit] {
   cursor: pointer;
+  font-size: x-large;
   margin: 15px 0px 0px;
 }
 

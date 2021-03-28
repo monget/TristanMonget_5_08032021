@@ -7,7 +7,7 @@ let dateOrder = JSON.parse(localStorage.getItem('dateOrder'));
 let addProducts = document.getElementById("addproducts");
 
 function productAdditionInCart() {
-    document.getElementById("caption").textContent = "Commande N° : " + order + " validé le " + dateOrder.localDate;
+    document.getElementById("caption").textContent = "Récapitulatif de votre commande N° : " + order + " validé le " + dateOrder.localDate;
     storageProducts.forEach(function (storageProduct) {
         let tr = document.createElement("tr");
         tr.setAttribute("id", "tr-lign");

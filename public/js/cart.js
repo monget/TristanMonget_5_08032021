@@ -17,10 +17,12 @@ function productAdditionInCart() {
         tr.setAttribute("id", "tr-lign" + number);
 
         let name = storageProduct.name;
+        let image = storageProduct.image;
         let color = storageProduct.color;
         let price = storageProduct.price;
 
         creationProducts(name, "tdName", tr, number);
+        creationProducts(image, "tdImage", tr, number);
         creationProducts(color, "tdcolor", tr, number);
         creationProducts(separateNumber(price + " €"), "tdPrice", tr, number);
         creationProducts("", "tdDelete", tr, number);
@@ -29,13 +31,22 @@ function productAdditionInCart() {
 }
 
 function creationProducts(storageName, tdName, tr, number) {
+    let image = tdName;
     tdName = document.createElement("td");
     if (storageName === "") {
         tdName.setAttribute("title", "supprimer le produit");
         tdName.setAttribute("onClick", "removeItem(" + number + ")");
         tdName.classList.add("table__delete");
     }
-    tdName.textContent = storageName;
+    if (image === "tdImage") {
+        img = document.createElement("img");
+        img.src = storageName;
+        img.classList.add("table__image");
+        tdName.appendChild(img);
+    }
+    else {
+        tdName.textContent = storageName;
+    }
     tr.appendChild(tdName);
 }
 
@@ -60,7 +71,7 @@ function totalPrice(value) {
 function emptyCart() {
     let tr = document.createElement("tr");
     let tdCart = document.createElement("td");
-    tdCart.setAttribute("colspan", "4");
+    tdCart.setAttribute("colspan", "5");
     tdCart.textContent = "Votre panier est vide";
     tr.appendChild(tdCart);
     addProducts.appendChild(tr);
@@ -127,7 +138,7 @@ function control() {
         return false;
     }
     else if (!regexEmail.test(email)) {
-        alert("Merci de mettre un adresse email valide");
+        alert("Merci de renseigner une adresse email valide");
         return false;
     }
     else {

@@ -31,7 +31,7 @@ function bindProductToView(data) {
         selectColor("color");
 
     })
-    addToCart(productId, productName, productPrice);
+    addToCart(productId, productImage, productName, productPrice);
 }
 
 function creationProduct(productName, elementName, elementValue, div) {
@@ -101,7 +101,7 @@ function setAttributes(elementName, options) {
     })
 }
 
-function addToCart(productId, productName, productPrice) {
+function addToCart(productId, productImage, productName, productPrice) {
     let addToCart = [];
     let controlCart = JSON.parse(localStorage.getItem('addToCart'));
     if (controlCart != null) {
@@ -114,6 +114,7 @@ function addToCart(productId, productName, productPrice) {
         else if (color != "Choisissez une couleur") {
             let productDetails = {
                 'id' : productId,
+                'image': productImage,
                 'name' : productName,
                 'color' : color,
                 'price' : productPrice
