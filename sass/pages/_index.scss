@@ -4,6 +4,20 @@
     grid-template-columns: repeat(3, 0fr);
     justify-content: space-around;
     margin: auto;
+    @include mobile-m {
+        grid-template-columns: repeat(1, 0fr);
+        padding: 30px 0px 340px;
+    }
+    @include mobile-l {
+        grid-template-columns: repeat(2, 0fr);
+        padding: 30px 0px 300px;
+    }
+    @include tablet {
+        grid-template-columns: repeat(2, 0fr);
+    }
+    @include screen {
+        grid-template-columns: repeat(4, 0fr);
+    }
     &__title {
         text-align: center;
         font-family: cursive;
@@ -25,6 +39,15 @@
         background-color: $color-secondary;
         &:hover {
             transform: scale(1.1);
+        }
+        @include mobile-xs {
+            padding: 25px;
+        }
+        @include mobile-m {
+            width: 200px;
+        }
+        @include mobile-l {
+            width: 250px;
         }
     }
     &__price {

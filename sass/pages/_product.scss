@@ -2,8 +2,43 @@
     padding: 30px 70px 40px;
     display: flex;
     justify-content: space-evenly;
+    @include mobile-m {
+        flex-direction: column;
+        padding: 0px 20px 330px;
+    }
+    @include mobile-l {
+        flex-direction: column;
+        padding: 0px 70px 330px;
+    }
+    @include tablet {
+        flex-direction: column;
+        padding: 0px 70px 330px;
+    }
+    @include screen {
+        padding: 150px 70px;
+    }
     &__picture {
         width: 45%;
+        @include mobile-m {
+            width: 100%;
+            margin: 50px auto;
+        }
+        @include mobile-l {
+            width: 75%;
+            margin: 50px auto;
+        }
+        @include tablet {
+            margin: 50px auto;
+        }
+    }
+    &__details {
+        @include tablet {
+            width: 80%;
+            margin: auto;
+        }
+        @include screen {
+            font-size: 1.5em;
+        }
     }
     &__name {
         font-family: cursive;
@@ -12,14 +47,26 @@
         font-size: 2.5rem;
         margin-block-start: 0px;
         margin-bottom: 50px;
+        @include screen {
+            font-size: 4.5rem;
+        }
     }
     &__colors {
         width: 250px;
-    display: flex;
-    margin: 40px 0px;
-    justify-content: space-between;
+        display: flex;
+        margin: 40px 0px;
+        justify-content: space-between;
+        @include screen {
+            width: 300px;
+        }
     }
     &__colorLabel h3 {
         margin-block: 0px;
+    }
+}
+
+#addCart {
+    @include screen {
+        font-size: 1.0em;
     }
 }

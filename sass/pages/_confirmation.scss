@@ -1,7 +1,17 @@
-/*main {
+.confirmation {
+    font-size: 1.3em;
     text-align: center;
+    font-family: "belligerent", cursive;
+    & h2 {
+        font-size: 1.7em;
+        color: $color-primary;
+        margin-bottom: 60px;
+    }
+    & table {
+        width: 95%;
+        margin: auto;
+        & caption {
+            margin-bottom: 15px;
+        }
+    }
 }
-.table {
-    width: 80%;
-    margin: auto;
-}*/

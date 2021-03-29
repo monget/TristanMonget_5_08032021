@@ -9,6 +9,14 @@ footer {
     justify-content: space-around;
     background-color: $color-primary;
     padding-top: 15px;
+    @include mobile-m {
+        flex-direction: column;
+        text-align: center;
+    }
+    @include mobile-l {
+        flex-direction: column;
+        text-align: center;
+    }
     & h2 {
         margin-block-start: 0px;
     }

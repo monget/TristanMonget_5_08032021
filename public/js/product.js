@@ -29,7 +29,6 @@ function bindProductToView(data) {
     
     document.getElementById("color").addEventListener("change", function() {
         selectColor("color");
-
     })
     addToCart(productId, productImage, productName, productPrice);
 }
