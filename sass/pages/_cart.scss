@@ -10,14 +10,17 @@
         flex-direction: column;
     }
     @include mobile-l {
-        width: 90%;
+        width: 95%;
         padding-bottom: 300px;
         flex-direction: column;
     }
     @include mobile-m {
-        width: 95%;
+        width: 100%;
         padding-bottom: 300px;
         flex-direction: column;
+    }
+    @include mobile-s {
+        padding-bottom: 320px;
     }
 }
 
@@ -41,17 +44,35 @@
         @include screen {
             font-size: 2.7em;
         }
+        @include mobile-m {
+            font-size: initial;
+        }
+        @include mobile-xs {
+            font-size: small;
+        }
     }
     &__foot {
         font-size: 1.5em;
         @include screen {
             font-size: 2.5em;
         }
+        @include mobile-m {
+            font-size: initial;
+        }
+        @include mobile-xs {
+            font-size: small;
+        }
     }
     &__body {
         font-size: 1.3em;
         @include screen {
             font-size: 2.3em;
+        }
+        @include mobile-m {
+            font-size: initial;
+        }
+        @include mobile-xs {
+            font-size: small;
         }
     }
     & th, td {
@@ -65,6 +86,14 @@
         border: 5px solid $color-primary;
         @include screen {
             width: 150px;
+        }
+        @include mobile-m {
+            width: 70px;
+        }
+        @include mobile-s {
+            width: 50px;
+            margin: 0px;
+            border: 0px;
         }
     }
     &__delete {
@@ -84,6 +113,12 @@
         @include screen {
             font-size: 0.6em;
             height: 55px;
+        }
+        @include mobile-m {
+            padding: 0px;
+        }
+        @include mobile-s {
+            height: 40px;
         }
     }
 }
@@ -109,6 +144,15 @@
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(6, 1fr);
     }
+    @include mobile-m {
+        font-size: initial;
+    }
+    @include mobile-s {
+        padding: 15px;
+    }
+    @include mobile-xs {
+        padding: 10px;
+    }
     & label {
         @include tablet {
             width: 115px;
@@ -123,6 +167,13 @@
         @include tablet {
             margin-right: 30px;
         }
+        @include mobile-m {
+            width: 200px;
+            font-size: revert;
+        }
+        @include mobile-xs {
+            width: 170px;
+        }
     }
     & input[type=submit] {
         cursor: pointer;
@@ -131,5 +182,10 @@
         @include tablet {
             margin-right: 30px;
         }
+        @include mobile-m {
+            width: 100%;
+            font-size: large;
+        }
+
     }
 }

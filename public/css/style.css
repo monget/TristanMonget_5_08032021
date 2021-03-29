@@ -299,16 +299,21 @@ a {
 }
 @media (min-width: 426px) and (max-width: 768px) {
   .main {
-    width: 90%;
+    width: 95%;
     padding-bottom: 300px;
     flex-direction: column;
   }
 }
 @media (max-width: 425px) {
   .main {
-    width: 95%;
+    width: 100%;
     padding-bottom: 300px;
     flex-direction: column;
+  }
+}
+@media (max-width: 320px) {
+  .main {
+    padding-bottom: 320px;
   }
 }
 
@@ -344,6 +349,16 @@ a {
     font-size: 2.7em;
   }
 }
+@media (max-width: 425px) {
+  .table__head {
+    font-size: initial;
+  }
+}
+@media (max-width: 280px) {
+  .table__head {
+    font-size: small;
+  }
+}
 .table__foot {
   font-size: 1.5em;
 }
@@ -352,12 +367,32 @@ a {
     font-size: 2.5em;
   }
 }
+@media (max-width: 425px) {
+  .table__foot {
+    font-size: initial;
+  }
+}
+@media (max-width: 280px) {
+  .table__foot {
+    font-size: small;
+  }
+}
 .table__body {
   font-size: 1.3em;
 }
 @media (min-width: 1920px) {
   .table__body {
     font-size: 2.3em;
+  }
+}
+@media (max-width: 425px) {
+  .table__body {
+    font-size: initial;
+  }
+}
+@media (max-width: 280px) {
+  .table__body {
+    font-size: small;
   }
 }
 .table th, .table td {
@@ -373,6 +408,18 @@ a {
 @media (min-width: 1920px) {
   .table__image {
     width: 150px;
+  }
+}
+@media (max-width: 425px) {
+  .table__image {
+    width: 70px;
+  }
+}
+@media (max-width: 320px) {
+  .table__image {
+    width: 50px;
+    margin: 0px;
+    border: 0px;
   }
 }
 .table__delete {
@@ -396,6 +443,16 @@ a {
   .table__order {
     font-size: 0.6em;
     height: 55px;
+  }
+}
+@media (max-width: 425px) {
+  .table__order {
+    padding: 0px;
+  }
+}
+@media (max-width: 320px) {
+  .table__order {
+    height: 40px;
   }
 }
 
@@ -425,6 +482,21 @@ a {
     grid-template-rows: repeat(6, 1fr);
   }
 }
+@media (max-width: 425px) {
+  .form {
+    font-size: initial;
+  }
+}
+@media (max-width: 320px) {
+  .form {
+    padding: 15px;
+  }
+}
+@media (max-width: 280px) {
+  .form {
+    padding: 10px;
+  }
+}
 @media (min-width: 769px) and (max-width: 1440px) {
   .form label {
     width: 115px;
@@ -442,6 +514,17 @@ a {
     margin-right: 30px;
   }
 }
+@media (max-width: 425px) {
+  .form input {
+    width: 200px;
+    font-size: revert;
+  }
+}
+@media (max-width: 280px) {
+  .form input {
+    width: 170px;
+  }
+}
 .form input[type=submit] {
   cursor: pointer;
   font-size: x-large;
@@ -452,16 +535,49 @@ a {
     margin-right: 30px;
   }
 }
+@media (max-width: 425px) {
+  .form input[type=submit] {
+    width: 100%;
+    font-size: large;
+  }
+}
 
 .confirmation {
   font-size: 1.3em;
   text-align: center;
+  padding-bottom: 200px;
   font-family: "belligerent", cursive;
+}
+@media (min-width: 1920px) {
+  .confirmation {
+    margin-top: 80px;
+    font-size: xx-large;
+  }
+}
+@media (min-width: 1441px) and (max-width: 1920px) {
+  .confirmation {
+    margin-top: 50px;
+  }
+}
+@media (min-width: 426px) and (max-width: 768px) {
+  .confirmation {
+    padding-bottom: 325px;
+  }
+}
+@media (max-width: 425px) {
+  .confirmation {
+    padding-bottom: 325px;
+  }
 }
 .confirmation h2 {
   font-size: 1.7em;
   color: peru;
-  margin-bottom: 60px;
+  margin-bottom: 50px;
+}
+@media (min-width: 1920px) {
+  .confirmation h2 {
+    margin-bottom: 80px;
+  }
 }
 .confirmation table {
   width: 95%;
@@ -469,6 +585,16 @@ a {
 }
 .confirmation table caption {
   margin-bottom: 15px;
+}
+@media (min-width: 1920px) {
+  .confirmation table tbody {
+    font-size: xxx-large;
+  }
+}
+@media (max-width: 425px) {
+  .confirmation table tbody {
+    font-size: initial;
+  }
 }
 
 footer {

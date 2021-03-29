@@ -1,17 +1,42 @@
 .confirmation {
     font-size: 1.3em;
     text-align: center;
+    padding-bottom: 200px;
     font-family: "belligerent", cursive;
+    @include screen {
+        margin-top: 80px;
+        font-size: xx-large;
+    }
+    @include laptop {
+        margin-top: 50px;
+    }
+    @include mobile-l {
+        padding-bottom: 325px;
+    }
+    @include mobile-m {
+        padding-bottom: 325px;
+    }
     & h2 {
         font-size: 1.7em;
         color: $color-primary;
-        margin-bottom: 60px;
+        margin-bottom: 50px;
+        @include screen {
+            margin-bottom: 80px;
+        }
     }
     & table {
         width: 95%;
         margin: auto;
         & caption {
             margin-bottom: 15px;
+        }
+        & tbody {
+            @include screen {
+                font-size: xxx-large;
+            }
+            @include mobile-m {
+                font-size: initial;
+            }
         }
     }
 }
