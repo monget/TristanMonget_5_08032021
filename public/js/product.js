@@ -1,7 +1,9 @@
+// Permet de récupérer l'id dans l'url
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const id = urlParams.get('id');
 
+// Récupére un Object avec l'id correspondant chacune des variables est crée avec creationProduct() puis inséré en html dans une div
 function bindProductToView(data) {
     let productId = data._id;
     let productName = data.name;
@@ -22,17 +24,20 @@ function bindProductToView(data) {
     creationProduct("Description : ", "descriptionTitle", "h3", div);
     creationProduct(productDescription, "description", "p", div);
     div.appendChild(colors);
-    creationColorMenu(productColors, colors, div);
+    creationColorMenu(productColors, colors);
     creationProduct("Prix unitaire : " + separateNumber(productPrice) + " €", "price", "p", div);
     creationProduct("Ajouter au panier", "addCart", "button", div);
     product.appendChild(div);
     
-    document.getElementById("color").addEventListener("change", function() {
-        selectColor("color");
+    document.getElementById("color").addEventListener("change", function() { // Retourne la couleur selectionnée après un changement d'état
+        select = document.getElementById("color");
+        choice = select.selectedIndex;
+        color = select.options[choice].text;
     })
     addToCart(productId, productImage, productName, productPrice);
 }
 
+// Crée une balise (elementValue) avec sa valeur src, textContent, classList ou setAttributes et l'insére dans la balise div
 function creationProduct(productName, elementName, elementValue, div) {
     let classList = elementName;
     elementName = document.createElement(elementValue);
@@ -52,6 +57,7 @@ function creationProduct(productName, elementName, elementValue, div) {
     }
 }
 
+// Crée un menu déroulant avec les couleurs disponibles
 function creationColorMenu(productColors, colors) {
     let colorLabel = document.createElement("label");
     setAttributes(colorLabel, {"for": "color"});
@@ -68,7 +74,7 @@ function creationColorMenu(productColors, colors) {
     colorChoise.textContent = "Choisissez une couleur";
     colorSelect.appendChild(colorChoise);
     
-    let value = 1;
+    let value = 1; 
     productColors.forEach(function (productColor) {
         let color = document.createElement("option");
         setAttributes(color, {"value": value});
@@ -81,30 +87,26 @@ function creationColorMenu(productColors, colors) {
     colors.appendChild(colorSelect);
 }
 
-function selectColor(id) {
-    select = document.getElementById(id);
-    choice = select.selectedIndex;
-    color = select.options[choice].text;
-    return color;
-}
-
+// Sépare une valeur numérique (>= 100) avec une virgule avant les 2 derniers chiffres
 function separateNumber(value) {
     if (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     } return value;
 }
 
+// Ajoute un attribut et sa valeur sur son elementName
 function setAttributes(elementName, options) {
     Object.keys(options).forEach(function(value) {
         elementName.setAttribute(value, options[value]);
     })
 }
 
+// Crée ou ajoute un produit dans le panier au click (localStorage)
 function addToCart(productId, productImage, productName, productPrice) {
     let addToCart = [];
     let controlCart = JSON.parse(localStorage.getItem('addToCart'));
     if (controlCart != null) {
-        addToCart = addToCart.concat(controlCart);
+        addToCart = addToCart.concat(controlCart); // Permet de fusionner les tableaux si addToCart existe déjà
     }
     document.getElementById("addCart").addEventListener("click",function() {
         if (color.value == 0) {
@@ -128,9 +130,15 @@ function addToCart(productId, productImage, productName, productPrice) {
     })
 }
 
+// Appelle la fonction GetData et récupére une promesse en json 
 getData("http://localhost:3000/api/teddies/" + id)
     .then(data => {
-        bindProductToView(data);
+        if (data != undefined) {
+            bindProductToView(data);
+        }
+        else {
+            alert("Merci de ne pas jouer avec l'url !");
+        }
     })
     .catch(error => {
         console.error(error);

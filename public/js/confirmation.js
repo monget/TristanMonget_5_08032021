@@ -1,3 +1,4 @@
+// Permet de récupérer l'id dans l'url
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const order = urlParams.get('order');
@@ -6,6 +7,7 @@ let storageProducts = JSON.parse(localStorage.getItem('order'));
 let dateOrder = JSON.parse(localStorage.getItem('dateOrder'));
 let addProducts = document.getElementById("addproducts");
 
+// Ajoute les produits présents dans le storage dans un tableau html
 function productAdditionInCart() {
     document.getElementById("caption").textContent = "Récapitulatif de votre commande N°: " + order + " validé le " + dateOrder.localDate;
     storageProducts.forEach(function (storageProduct) {
@@ -16,19 +18,21 @@ function productAdditionInCart() {
         let color = storageProduct.color;
         let price = storageProduct.price;
 
-        creationProducts(name, "tdName", tr);
-        creationProducts(color, "tdcolor", tr);
-        creationProducts(separateNumber(price + " €"), "tdPrice", tr);
+        creationProduct(name, "tdName", tr);
+        creationProduct(color, "tdcolor", tr);
+        creationProduct(separateNumber(price + " €"), "tdPrice", tr);
         addProducts.appendChild(tr);
     })
 }
 
-function creationProducts(storageName, tdName, tr) {
+// Crée une balise (tdName) avec sa valeur textContent et l'insére dans la balise tr
+function creationProduct(storageName, tdName, tr) {
     tdName = document.createElement("td");
     tdName.textContent = storageName;
     tr.appendChild(tdName);
 }
 
+// Additionne les prix des produits dans le storage et l'ajoute dans le total du tableau
 function totalPrice(value) {
     let total = 0;
     if (value != 0) {
@@ -41,6 +45,7 @@ function totalPrice(value) {
     }
 }
 
+// Sépare une valeur numérique (>= 100) avec une virgule avant les 2 derniers chiffres
 function separateNumber(value) {
     if (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');

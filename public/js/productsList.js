@@ -1,3 +1,4 @@
+// Récupére un array parcouru avec la méthode forEach et chacune des variables est crée avec creationProducts() puis inséré en html dans une balise a
 function bindProductsToView(data) {
     let products = data;
     let productsList = document.getElementById("products");
@@ -25,8 +26,9 @@ function bindProductsToView(data) {
     })
 }
 
+// Crée une balise (elementValue) avec sa valeur src, textContent ou classList et l'insére dans la balise a associé
 function creationProducts(productName, elementName, elementValue, a) {
-    let classList = elementName; 
+    let classList = elementName;
     elementName = document.createElement(elementValue);
     if (classList === "picture") {
         elementName.src = productName;
@@ -40,15 +42,22 @@ function creationProducts(productName, elementName, elementValue, a) {
     a.appendChild(elementName);
 }
 
+// Sépare une valeur numérique (>= 100) avec une virgule avant les 2 derniers chiffres
 function separateNumber(value) {
-    while (/(\d+)(\d{2})/.test(value.toString())) {
+    if (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     } return value;
 }
 
+// Appelle la fonction GetData et récupére une promesse en json 
 getData("http://localhost:3000/api/teddies")
     .then(data => {
-        bindProductsToView(data);
+        if (data != undefined) {
+            bindProductsToView(data);
+        }
+        else {
+            alert("Erreur avec l'url");
+        }
     })
     .catch(error => {
         console.error(error);

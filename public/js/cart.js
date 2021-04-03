@@ -9,6 +9,7 @@ else {
     emptyCart();
 }
 
+// Ajoute les produits présents dans le storage dans un tableau html
 function productAdditionInCart() {
     let number = 0;
     storageProducts.forEach(function (storageProduct) {
@@ -21,16 +22,17 @@ function productAdditionInCart() {
         let color = storageProduct.color;
         let price = storageProduct.price;
 
-        creationProducts(name, "tdName", tr, number);
-        creationProducts(image, "tdImage", tr, number);
-        creationProducts(color, "tdcolor", tr, number);
-        creationProducts(separateNumber(price + " €"), "tdPrice", tr, number);
-        creationProducts("", "tdDelete", tr, number);
+        creationProduct(name, "tdName", tr, number);
+        creationProduct(image, "tdImage", tr, number);
+        creationProduct(color, "tdcolor", tr, number);
+        creationProduct(separateNumber(price + " €"), "tdPrice", tr, number);
+        creationProduct("", "tdDelete", tr, number);
         addProducts.appendChild(tr);
     })
 }
 
-function creationProducts(storageName, tdName, tr, number) {
+// Crée une balise (tdName) avec sa valeur src, textContent, classList ou setAttributes et l'insére dans la balise tr
+function creationProduct(storageName, tdName, tr, number) {
     let image = tdName;
     tdName = document.createElement("td");
     if (storageName === "") {
@@ -50,12 +52,14 @@ function creationProducts(storageName, tdName, tr, number) {
     tr.appendChild(tdName);
 }
 
+// Sépare une valeur numérique (>= 100) avec une virgule avant les 2 derniers chiffres
 function separateNumber(value) {
     if (/(\d+)(\d{2})/.test(value.toString())) {
         value = value.toString().replace(/(\d+)(\d{2})/, '$1'+','+'$2');
     } return value;
 }
 
+// Additionne les prix des produits dans le storage et l'ajoute dans le total du tableau
 function totalPrice(value) {
     let total = 0;
     if (value != 0) {
@@ -68,6 +72,7 @@ function totalPrice(value) {
     }
 }
 
+// Crée et insére une ligne "Votre panier est vide" dans le tableau et cache le formulaire
 function emptyCart() {
     let tr = document.createElement("tr");
     let tdCart = document.createElement("td");
@@ -81,12 +86,13 @@ function emptyCart() {
 
 document.getElementById("delete-all").addEventListener("click",function() {
     window.localStorage.clear();
-    while (addProducts.firstChild) {
+    while (addProducts.firstChild) { // Supprime toutes les lignes de produit du tableau
         addProducts.removeChild(addProducts.firstChild);
     }
     emptyCart();
 })
 
+// Supprime le produit selectionné au onclick() du html et du storage et retourne un nouveau tableau
 function removeItem(value) {
     let lignNumber = document.getElementById("tr-lign" + value);
     addProducts.removeChild(lignNumber);
@@ -111,6 +117,7 @@ document.getElementById("button-order").addEventListener("click",function() {
     }
 })
 
+// Contrôle les valeurs inputs du form
 function control() {
     const lastName = form.elements.lastName.value;
     const firstName = form.elements.firstName.value;
@@ -142,47 +149,52 @@ function control() {
         return false;
     }
     else {
-        if (storageProducts != null) {
-            let dateOrder = new Date();
-            let localDate = dateOrder.toLocaleString('fr-FR', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            })
-            date = {localDate};
-            localStorage.setItem('dateOrder', JSON.stringify(date));
-            let products = [];
-            storageProducts.forEach(function (storageProduct) {
-                let product = {
-                    '_id' : storageProduct.id,
-                    'name' : storageProduct.name,
-                    'color' : storageProduct.color,
-                    'price' : storageProduct.price
-                }
-                products.push(product);
-                localStorage.setItem('order', JSON.stringify(products));
-            })
-            order = {
-                contact: {
-                    firstName,
-                    lastName,
-                    address,
-                    city,
-                    email,
-                },
-                products
-            }
-            postData();
-            localStorage.removeItem("addToCart");
-        }
-        else {
-            alert("Votre panier est vide");
-        }
+        createData();
         return false;
     }
 }
 
+// Crée une date, un objet contact et un tableau products
+function createData() {
+    if (storageProducts != null) {
+        let dateOrder = new Date();
+        let localDate = dateOrder.toLocaleString('fr-FR', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        })
+        date = {localDate};
+        localStorage.setItem('dateOrder', JSON.stringify(date));
+        let products = [];
+        storageProducts.forEach(function (storageProduct) {
+            let product = {
+                '_id' : storageProduct.id,
+                'name' : storageProduct.name,
+                'color' : storageProduct.color,
+                'price' : storageProduct.price
+            }
+            products.push(product);
+            localStorage.setItem('order', JSON.stringify(products));
+        })
+        order = {
+            contact: {
+                firstName,
+                lastName,
+                address,
+                city,
+                email,
+            },
+            products
+        }
+        postData();
+    }
+    else {
+        alert("Votre panier est vide");
+    }
+}
+
+// Envoi la commande à l'api et ouvre la page "confirmation.html" avec l'orderId retourné par l'api
 async function postData() {
     response = await fetch("http://localhost:3000/api/teddies/order", {
         method: "POST",
@@ -190,6 +202,7 @@ async function postData() {
         body:  JSON.stringify(order)
     })
     .then(response => {
+        localStorage.removeItem("addToCart");
         return response.json();
     })
     .then(data => {
