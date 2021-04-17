@@ -112,7 +112,7 @@ function removeItem(value) {
 }
 
 document.getElementById("button-order").addEventListener("click",function() {
-    if (storageProducts != null){
+    if (storageProducts != 0){
         document.getElementById("form").style.visibility = "visible";
     }
 })
