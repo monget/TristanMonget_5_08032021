@@ -112,7 +112,7 @@ function removeItem(value) {
 }
 
 document.getElementById("button-order").addEventListener("click",function() {
-    if (storageProducts != 0){
+    if (localStorage.getItem('addToCart') != null){
         document.getElementById("form").style.visibility = "visible";
     }
 })
